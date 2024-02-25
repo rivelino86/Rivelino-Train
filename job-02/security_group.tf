@@ -1,5 +1,5 @@
 resource "aws_security_group" "ssh_sg" {
-
+  count = (var.kind_of_server != "1" && var.kind_of_server != "2") ? 0 : 1 
   name        = "my_ssh"
   description = "This sg help me to connect my server via ssh"
 
@@ -26,9 +26,9 @@ resource "aws_security_group" "ssh_sg" {
   }
 }
 
-resource "aws_security_group" "splunk_sg" {
-  
-  name        = "my_splunk_port"
+resource "aws_security_group" "my_sg" {
+  count = (var.kind_of_server != "1" && var.kind_of_server != "2") ? 0 : 1 
+  name        = "sg_port_${var.kind_of_server == "1" ? "jenkins" : "splunk"}"
   description = "This sg help me to connect my server via ssh"
 
   
@@ -42,9 +42,9 @@ resource "aws_security_group" "splunk_sg" {
   }
 
   ingress { // corresponding to inbound into aws console
-    description = "open the port of my splunk server"
-    from_port   = var.port
-    to_port     = var.port
+    description = "open the port of my 2 server"
+    from_port   = (var.kind_of_server == "1" ? 8080 : 8000)
+    to_port     = (var.kind_of_server == "1" ? 8080 : 8000)
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
 
