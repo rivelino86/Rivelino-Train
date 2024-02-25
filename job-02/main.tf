@@ -28,5 +28,5 @@ resource "null_resource" "my_resource" {
 
 output "my_link" {
  
-  value = "${aws_instance.server[0].public_ip}:${var.kind_of_server == "1" ? 8080 : 8000}"
+  value = (var.kind_of_server != "1" && var.kind_of_server != "2") ? "Server not find !!!" : "${aws_instance.server[0].public_ip}:${var.kind_of_server == "1" ? 8080 : 8000}"
 }
