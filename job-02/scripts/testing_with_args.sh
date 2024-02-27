@@ -3,7 +3,7 @@
 echo "|################################################################|"
 echo "|#        This script help us to test if the sever              #|"
 echo "|#                than installed is ready                       #|"
-echo "|#               ### copy rigth  Kossi ###                      #|"
+echo "|#               ### copy rigth  Rivelino ###                      #|"
 echo "|################################################################|"
 echo ""
 
