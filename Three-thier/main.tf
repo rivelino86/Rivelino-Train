@@ -8,10 +8,7 @@ resource "aws_instance" "web_server_1" {
   vpc_security_group_ids = [aws_security_group.srv_sg.id]
   subnet_id              = aws_subnet.private_subnets_az1.id
   availability_zone      = var.availability_zone[0]
-  associate_public_ip_address = true
-#   root_block_device {
-#     volume_size = var.storage_size
-#   }
+  //associate_public_ip_address = true
 
   tags = {
 
@@ -30,10 +27,6 @@ resource "aws_instance" "web_server_2" {
   vpc_security_group_ids = [aws_security_group.srv_sg.id]
   subnet_id              = aws_subnet.private_subnets_az2.id
   availability_zone      = var.availability_zone[1]
-
-#   root_block_device {
-#     volume_size = var.storage_size
-#   }
 
   tags = {
 

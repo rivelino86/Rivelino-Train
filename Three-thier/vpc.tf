@@ -32,13 +32,13 @@ resource "aws_route_table" "public-route_table" {
    }
 }
 
-// associate my private subnet to route table
+// associate my public subnet to route table
 resource "aws_route_table_association" "ass_sb_pub_az1" {
     subnet_id = aws_subnet.public_subnets_az1.id
     route_table_id = aws_route_table.public-route_table.id
     
 }
-// associate my private subnet to route table
+// associate my public subnet to route table
 resource "aws_route_table_association" "ass_sb_pub_az2" {
     subnet_id = aws_subnet.public_subnets_az2.id
     route_table_id = aws_route_table.public-route_table.id
@@ -51,7 +51,6 @@ resource "aws_route_table_association" "ass_sb_pub_az2" {
 resource "aws_eip" "eip_1" {
     depends_on = [ aws_internet_gateway.my_igw ]
    
-
 }
 
 // One Public subnet
@@ -72,7 +71,7 @@ resource "aws_subnet" "private_subnets_az1" {
 
 }
 
-// Public nat Gateway
+// Public nat Gateway for AZ1
 resource "aws_nat_gateway" "nat_gateway-pub-az1" {
 
   subnet_id = aws_subnet.public_subnets_az1.id
